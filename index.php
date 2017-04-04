@@ -13,7 +13,7 @@
    );
 
   //Carrega o arquivo
-  $file = file_get_contents($curriculosPath['augusto']);
+  $file = file_get_contents($curriculosPath['jaime']);
   // // Substitui quebras de linha
   $file = str_replace(array("\n", "\r", "\t"), '', $file);
   // // Remove espaços múltiplos
