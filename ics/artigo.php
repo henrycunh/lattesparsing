@@ -20,29 +20,36 @@
     }
 
     public static function getArtigos($data){
+      // array vazio a fim de ser retornado no final
       $artigos = array();
-      $artigosRaw = $data['PRODUCAO-BIBLIOGRAFICA']['ARTIGOS-PUBLICADOS']['ARTIGO-PUBLICADO'];
-      foreach ($artigosRaw as $artigo) {
-        $artigo_ = new self();
-        $autores = $artigo['AUTORES'];
-        $dadosB = attr($artigo['DADOS-BASICOS-DO-ARTIGO']);
-        $details = attr($artigo['DETALHAMENTO-DO-ARTIGO']);
+      // checa se a pessoa possui algum artigo
+      if(isset($data['PRODUCAO-BIBLIOGRAFICA']['ARTIGOS-PUBLICADOS']['ARTIGO-PUBLICADO'])):
+        // Caminho até os artigos
+        $artigosRaw = $data['PRODUCAO-BIBLIOGRAFICA']['ARTIGOS-PUBLICADOS']['ARTIGO-PUBLICADO'];
+        // Caso a pessoa possua apenas um único artigo
+        // if(array_keys($artigosRaw)[0] == '@attributes') $artigosRaw = array($artigosRaw);
+        foreach ($artigosRaw as $artigo) {
+          $artigo_ = new self();
+          $autores = $artigo['AUTORES'];
+          $dadosB = attr($artigo['DADOS-BASICOS-DO-ARTIGO']);
+          $details = attr($artigo['DETALHAMENTO-DO-ARTIGO']);
 
-        $artigo_->titulo = $dadosB['TITULO-DO-ARTIGO'];
-        $artigo_->ano = $dadosB['ANO-DO-ARTIGO'];
-        $artigo_->tituloPeriodico = $details['TITULO-DO-PERIODICO-OU-REVISTA'];
-        $artigo_->issn = $details['ISSN'];
-        $artigo_->paginaFinal = $details['PAGINA-FINAL'];
-        $artigo_->paginaInicial = $details['PAGINA-INICIAL'];
-        $artigo_->autores = getAutores($autores);
+          $artigo_->titulo = $dadosB['TITULO-DO-ARTIGO'];
+          $artigo_->ano = $dadosB['ANO-DO-ARTIGO'];
+          $artigo_->tituloPeriodico = $details['TITULO-DO-PERIODICO-OU-REVISTA'];
+          $artigo_->issn = $details['ISSN'];
+          $artigo_->paginaFinal = $details['PAGINA-FINAL'];
+          $artigo_->paginaInicial = $details['PAGINA-INICIAL'];
+          $artigo_->autores = getAutores($autores);
 
-        array_push($artigos, $artigo_);
-      }
+          array_push($artigos, $artigo_);
+        }
+      endif;
       return $artigos;
     }
 
 
   }
 
-  
+
 ?>

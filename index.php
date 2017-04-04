@@ -13,7 +13,7 @@
    );
 
   //Carrega o arquivo
-  $file = file_get_contents($curriculosPath['jose']);
+  $file = file_get_contents($curriculosPath['augusto']);
   // // Substitui quebras de linha
   $file = str_replace(array("\n", "\r", "\t"), '', $file);
   // // Remove espaços múltiplos
@@ -28,9 +28,8 @@
   // Objeto Curriculo
   $curriculo = Curriculo::getCurriculo($data);
 
-
-  // echo json_encode($curriculo, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
   // echo json_encode(Livro::getLivros($data), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-  echo $json;
+  echo json_encode($curriculo, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+  // echo $json;
 
 ?>

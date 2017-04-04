@@ -22,6 +22,7 @@
   }
 
   // Importando ICs
+  require 'utils.php';
   require 'titulacao.php';
   require 'artigo.php';
   require 'livro.php';

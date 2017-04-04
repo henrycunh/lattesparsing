@@ -1,7 +1,4 @@
 <?php
-// importando utilidades
-require 'utils.php';
-
 // Titulação (Graduação, Especialista, Mestrado, Doutorado)
 class Titulacao{
   public $titulo;
