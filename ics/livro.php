@@ -35,7 +35,8 @@
         $livrosRaw = $data['PRODUCAO-BIBLIOGRAFICA']['LIVROS-E-CAPITULOS']['LIVROS-PUBLICADOS-OU-ORGANIZADOS']['LIVRO-PUBLICADO-OU-ORGANIZADO'];
         // Caso a pessoa apenas um livro, o que uma vez seria um vetor livros, se torna
         // um único vetor com as informações do livro, que começa em @attributes
-        if(array_keys($livrosRaw)[0] == "@attributes") $livrosRaw = array($livrosRaw);
+        // echo array_keys($livrosRaw)[0];
+        if(array_keys($livrosRaw)[0] === "@attributes"){ $livrosRaw = array($livrosRaw); };
         //Percorrer cada livro para pegar seus atributos
         foreach ($livrosRaw as $livro) {
           $livro_ = new self();

@@ -26,7 +26,7 @@
       if(isset($data['PRODUCAO-BIBLIOGRAFICA']['ARTIGOS-PUBLICADOS']['ARTIGO-PUBLICADO'])):
         // Caminho até os artigos
         $artigosRaw = $data['PRODUCAO-BIBLIOGRAFICA']['ARTIGOS-PUBLICADOS']['ARTIGO-PUBLICADO'];
-        // Caso a pessoa possua apenas um único artigo
+        // Caso a pessoa possua apenas um único artigo  
         // if(array_keys($artigosRaw)[0] == '@attributes') $artigosRaw = array($artigosRaw);
         foreach ($artigosRaw as $artigo) {
           $artigo_ = new self();
