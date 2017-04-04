@@ -14,9 +14,9 @@
 
   //Carrega o arquivo
   $file = file_get_contents($curriculosPath['chirlaine']);
-  // Substitui quebras de linha
+  // // Substitui quebras de linha
   $file = str_replace(array("\n", "\r", "\t"), '', $file);
-  // Remove espaços múltiplos
+  // // Remove espaços múltiplos
   $file = preg_replace('/\s+/', ' ', $file);
   // Dá parse no XML
   $xml = simplexml_load_string($file);
@@ -30,5 +30,8 @@
   // Objeto Curriculo
   $curriculo = Curriculo::getCurriculo($data);
 
-  var_dump($curriculo);
+
+  // echo json_encode($curriculo);
+  echo $json;
+
 ?>

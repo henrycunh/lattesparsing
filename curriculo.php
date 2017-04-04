@@ -2,7 +2,7 @@
   // Classe principal
   class Curriculo{
     // ICs
-    private $titulacao;
+    public $titulacao;
 
     // Construtor
     public function __construct(){
@@ -17,6 +17,7 @@
     }
 
     public function setTitulacao($titulacao){$this->titulacao = $titulacao;}
+    public function getTitulacao(){ return $this->titulacao; }
 
   }
 
@@ -24,12 +25,12 @@
 
   // Titulação (Graduação, Especialista, Mestrado, Doutorado)
   class Titulacao{
-    private $titulo;
-    private $nomeCurso;
-    private $instituicao;
-    private $orientador;
-    private $anoInicio;
-    private $anoConclusao;
+    public $titulo;
+    public $nomeCurso;
+    public $instituicao;
+    public $orientador;
+    public $anoInicio;
+    public $anoConclusao;
 
     public function __construct(){
       $this->titulo = "";
@@ -47,22 +48,27 @@
       $tipo; $titulo;
 
       // Pegando a maior titulação
+
       if(isset($titulos['DOUTORADO'])){
          $tipo = 1;
-         $titulo = attr($titulos['DOUTORADO']);
+         $titulo = $titulos['DOUTORADO'];
        }
       else if(isset($titulos['MESTRADO'])) {
         $tipo = 2;
-        $titulo = attr($titulos['MESTRADO']);
+        $titulo = $titulos['MESTRADO'];
       }
       else if(isset($titulos['ESPECIALIZACAO'])){
         $tipo = 3;
-        $titulo = attr($titulos['ESPECIALIZACAO']);
+        $titulo = $titulos['ESPECIALIZACAO'];
       }
 
       // Processando cada titulação
       if($tipo == 1){
         // Doutorado
+        // Pegar o doutorado mais recente, se houver mais de um
+        if(count($titulo) > 1)
+          $titulo = pegarMaisRecente($titulo, 'ANO-DE-CONCLUSAO');
+        $titulo = attr($titulo);
         $titulacao->setTitulo($titulo['TITULO-DA-DISSERTACAO-TESE']);
         $titulacao->setNomeCurso($titulo['NOME-CURSO']);
         $titulacao->setInstituicao($titulo['NOME-INSTITUICAO']);
@@ -71,6 +77,10 @@
         $titulacao->setAnoConclusao($titulo['ANO-DE-CONCLUSAO']);
       } else if ($tipo == 2){
         // Mestrado
+        // Pegar o mestrado mais recente, se houver mais de um
+        if(count($titulo) > 1)
+          $titulo = pegarMaisRecente($titulo, 'ANO-DE-CONCLUSAO');
+        $titulo = attr($titulo);
         $titulacao->setTitulo($titulo['TITULO-DA-DISSERTACAO-TESE']);
         $titulacao->setNomeCurso($titulo['NOME-CURSO']);
         $titulacao->setInstituicao($titulo['NOME-INSTITUICAO']);
@@ -78,11 +88,15 @@
         $titulacao->setAnoInicio($titulo['ANO-DE-INICIO']);
         $titulacao->setAnoConclusao($titulo['ANO-DE-CONCLUSAO']);
       } else if ($tipo == 3){
-        // Graduação
-        $titulacao->setTitulo($titulo['TITULO-DA-DISSERTACAO-TESE']);
+        // Especialização
+        // Pegar a especialização mais recente, se houver mais de um
+        if(count($titulo) > 1)
+          $titulo = pegarMaisRecente($titulo, 'ANO-DE-CONCLUSAO');
+        $titulo = attr($titulo);
+        $titulacao->setTitulo($titulo['TITULO-DA-MONOGRAFIA']);
         $titulacao->setNomeCurso($titulo['NOME-CURSO']);
         $titulacao->setInstituicao($titulo['NOME-INSTITUICAO']);
-        $titulacao->setOrientador($titulo['NOME-COMPLETO-DO-ORIENTADOR']);
+        $titulacao->setOrientador($titulo['NOME-DO-ORIENTADOR']);
         $titulacao->setAnoInicio($titulo['ANO-DE-INICIO']);
         $titulacao->setAnoConclusao($titulo['ANO-DE-CONCLUSAO']);
       }
@@ -107,6 +121,18 @@
 
   function attr($array){
     return $array['@attributes'];
+  }
+
+  function pegarMaisRecente($array, $value){
+    $high = 0; $highPos = 0; $count = 0;
+    foreach ($array as $item) {
+      if(attr($item)[$value] > $high){
+         $high = attr($item)[$value];
+         $highPos = $count;
+      }
+      $count++;
+    }
+    return $array[$highPos];
   }
 
 
