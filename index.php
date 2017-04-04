@@ -1,6 +1,6 @@
 <?php
   // Importando as classes de Curriculo os ICs
-  require 'curriculo.php';
+  require 'ics/curriculo.php';
   // Define o tipo de conteudo
   header("Content-type: application/json");
   // Array com caminho para diferentes curriculos (debug)
