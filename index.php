@@ -13,7 +13,7 @@
    );
 
   //Carrega o arquivo
-  $file = file_get_contents($curriculosPath['chirlaine']);
+  $file = file_get_contents($curriculosPath['augusto']);
   // // Substitui quebras de linha
   $file = str_replace(array("\n", "\r", "\t"), '', $file);
   // // Remove espaços múltiplos
@@ -24,14 +24,12 @@
   $json = json_encode($xml, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
   // Transforma para Array
   $data = json_decode($json, TRUE);
-  // DEBUG JSON
-  $debug = json_encode('' , JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 
   // Objeto Curriculo
   $curriculo = Curriculo::getCurriculo($data);
 
 
-  // echo json_encode($curriculo);
-  echo $json;
+  echo json_encode($curriculo);
+  // echo $json;
 
 ?>

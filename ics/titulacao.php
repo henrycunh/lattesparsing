@@ -45,7 +45,7 @@ class Titulacao{
     if($tipo == 1){
       // Doutorado
       // Pegar o doutorado mais recente, se houver mais de um
-      if(count($titulo) > 1)
+      if(count($titulo) > 1 && array_keys($titulo)[1] != "PALAVRAS-CHAVE")
         $titulo = pegarMaisRecente($titulo, 'ANO-DE-CONCLUSAO');
       $titulo = attr($titulo);
       $titulacao->setTitulo($titulo['TITULO-DA-DISSERTACAO-TESE']);
@@ -57,7 +57,7 @@ class Titulacao{
     } else if ($tipo == 2){
       // Mestrado
       // Pegar o mestrado mais recente, se houver mais de um
-      if(count($titulo) > 1)
+      if(count($titulo) > 1 && array_keys($titulo)[1] != "PALAVRAS-CHAVE")
         $titulo = pegarMaisRecente($titulo, 'ANO-DE-CONCLUSAO');
       $titulo = attr($titulo);
       $titulacao->setTitulo($titulo['TITULO-DA-DISSERTACAO-TESE']);
@@ -69,7 +69,7 @@ class Titulacao{
     } else if ($tipo == 3){
       // Especialização
       // Pegar a especialização mais recente, se houver mais de um
-      if(count($titulo) > 1)
+      if(count($titulo) > 1 && array_keys($titulo)[1] != "PALAVRAS-CHAVE")
         $titulo = pegarMaisRecente($titulo, 'ANO-DE-CONCLUSAO');
       $titulo = attr($titulo);
       $titulacao->setTitulo($titulo['TITULO-DA-MONOGRAFIA']);
