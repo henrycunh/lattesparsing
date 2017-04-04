@@ -4,7 +4,7 @@
     // ICs
     public $titulacao;
     public $artigos;
-
+    public $livros;
     // Construtor
     public function __construct(){
       $this->titulacao = '';
@@ -15,6 +15,7 @@
       $curriculo = new self();
       $curriculo->titulacao = Titulacao::getTitulacao($data);
       $curriculo->artigos = Artigo::getArtigos($data);
+      $curriculo->livros = Livro::getLivros($data);
       return $curriculo;
     }
 
@@ -23,6 +24,7 @@
   // Importando ICs
   require 'titulacao.php';
   require 'artigo.php';
+  require 'livro.php';
 
 
 

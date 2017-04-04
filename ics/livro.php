@@ -1,0 +1,63 @@
+<?php
+  class Livro{
+    /*Declaração de atributos*/
+    //DADOS-BASICOS-DO-LIVRO
+    public $tipo;
+    public $titulo;
+    public $ano;
+    public $homepage;
+    public $doi;
+    //DETALHAMENTO-DO-LIVRO
+    public $isbn;
+    public $numPags;
+    //AUTORES
+    public $autores;
+
+    //Construtor
+    public function __construct(){
+      $this->tipo = '';
+      $this->titulo = '';
+      $this->ano = '';
+      $this->homepage = '';
+      $this->doi = '';
+      $this->isbn = '';
+      $this->numPags = '';
+      $this->autores = array();
+    }
+
+    //Pegar array de livros
+    public static function getLivros($data){
+      //Declaração array de livros
+      $livros = array();
+
+      if(isset($data['PRODUCAO-BIBLIOGRAFICA']['LIVROS-E-CAPITULOS']['LIVROS-PUBLICADOS-OU-ORGANIZADOS']['LIVRO-PUBLICADO-OU-ORGANIZADO'])):
+      //Caminho até os livros
+      $livrosRaw = $data['PRODUCAO-BIBLIOGRAFICA']['LIVROS-E-CAPITULOS']['LIVROS-PUBLICADOS-OU-ORGANIZADOS']['LIVRO-PUBLICADO-OU-ORGANIZADO'];
+      if(count($livrosRaw) > 1) $livrosRaw = array($livrosRaw);
+      //Percorrer cada livro para pegar seus atributos
+      foreach ($livrosRaw as $livro) {
+        $livro_ = new self();
+        $autores = $livro['AUTORES'];
+        $dadosB = attr($livro['DADOS-BASICOS-DO-LIVRO']);
+        $details = attr($livro['DETALHAMENTO-DO-LIVRO']);
+
+        $livro_->tipo = $dadosB['TIPO'];
+        $livro_->titulo = $dadosB['TITULO-DO-LIVRO'];
+        $livro_->ano = $dadosB['ANO'];
+        $livro_->homepage = $dadosB['HOME-PAGE-DO-TRABALHO'];
+        $livro_->doi = $dadosB['DOI'];
+        $livro_->isbn = $details['ISBN'];
+        $livro_->numPags = $details['NUMERO-DE-PAGINAS'];
+        $livro_->autores = getAutores($autores);
+
+        array_push($livros, $livro_);
+      }
+      endif;
+
+      return $livros;
+    }
+  }
+
+
+
+ ?>

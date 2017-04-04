@@ -44,26 +44,5 @@
 
   }
 
-  function getAutores($array){
-    if(count($array) > 1):
-      $autores = array();
-      foreach ($array as $autor) {
-        $autor = attr($autor);
-        array_push($autores, array(
-          'nomeCompleto' => $autor['NOME-COMPLETO-DO-AUTOR'],
-          'nomeCitacao' => $autor['NOME-PARA-CITACAO'],
-          'numIdCNPQ' => $autor['NRO-ID-CNPQ']
-        ));
-      }
-    else:
-      $autor = attr($array);
-      $autores = array(
-        'nomeCompleto' => $autor['NOME-COMPLETO-DO-AUTOR'],
-        'nomeCitacao' => $autor['NOME-PARA-CITACAO'],
-        'numIdCNPQ' => $autor['NRO-ID-CNPQ']
-      );
-    endif;
-    
-    return $autores;
-  }
+  
 ?>
