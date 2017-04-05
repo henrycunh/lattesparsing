@@ -9,6 +9,7 @@
     public $capLivros;
     public $bancas;
     public $organizacaoEventos;
+    public $patentes;
     // Construtor
     public function __construct(){
       $this->titulacao = '';
@@ -18,6 +19,7 @@
       $this->capLivros = '';
       $this->bancas = '';
       $this->organizacaoEventos = '';
+      $this->patentes = '';
     }
 
     // Função para instanciar e buscar todas as informações
@@ -30,6 +32,7 @@
       $curriculo->capLivros = CapLivro::getCapLivros($data);
       $curriculo->bancas = Banca::getBancas($data);
       $curriculo->organizacaoEventos = OrganizacaoEvento::getOrganizacaoEvento($data);
+      $curriculo->patentes = Patente::getPatentes($data);
       return $curriculo;
     }
 
@@ -44,6 +47,7 @@
   require 'capLivro.php';
   require 'banca.php';
   require 'organizacaoEvento.php';
+  require 'patente.php';
 
 
 
