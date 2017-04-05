@@ -21,6 +21,7 @@
     return $array[$highPos];
   }
 
+  // Função que recebe um array e retorna uma lista de autores
   function getAutores($array){
     if(count($array) > 1):
       $autores = array();

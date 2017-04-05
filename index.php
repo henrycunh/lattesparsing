@@ -28,8 +28,8 @@
   // Objeto Curriculo
   $curriculo = Curriculo::getCurriculo($data);
 
-  // echo json_encode(TrabEvento::getTrabEventos($data), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-  echo json_encode($curriculo, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+  echo json_encode(Banca::getBancas($data), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+  // echo json_encode($curriculo, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
   // echo $json;
 
 ?>
