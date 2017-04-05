@@ -8,10 +8,16 @@
     public $trabEventos;
     public $capLivros;
     public $bancas;
-    
+    public $organizacaoEventos;
     // Construtor
     public function __construct(){
       $this->titulacao = '';
+      $this->artigos = '';
+      $this->livros = '';
+      $this->trabEventos = '';
+      $this->capLivros = '';
+      $this->bancas = '';
+      $this->organizacaoEventos = '';
     }
 
     // Função para instanciar e buscar todas as informações
@@ -23,6 +29,7 @@
       $curriculo->trabEventos = TrabEvento::getTrabEventos($data);
       $curriculo->capLivros = CapLivro::getCapLivros($data);
       $curriculo->bancas = Banca::getBancas($data);
+      $curriculo->organizacaoEventos = OrganizacaoEvento::getOrganizacaoEvento($data);
       return $curriculo;
     }
 
@@ -36,6 +43,7 @@
   require 'trabEvento.php';
   require 'capLivro.php';
   require 'banca.php';
+  require 'organizacaoEvento.php';
 
 
 
