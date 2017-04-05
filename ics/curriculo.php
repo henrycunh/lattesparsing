@@ -6,6 +6,7 @@
     public $artigos;
     public $livros;
     public $trabEventos;
+    public $capLivros;
     // Construtor
     public function __construct(){
       $this->titulacao = '';
@@ -18,6 +19,7 @@
       $curriculo->artigos = Artigo::getArtigos($data);
       $curriculo->livros = Livro::getLivros($data);
       $curriculo->trabEventos = TrabEvento::getTrabEventos($data);
+      $curriculo->capLivros = CapLivro::getCapLivros($data);
       return $curriculo;
     }
 
@@ -29,6 +31,7 @@
   require 'artigo.php';
   require 'livro.php';
   require 'trabEvento.php';
+  require 'capLivro.php';
 
 
 
