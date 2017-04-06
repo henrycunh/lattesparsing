@@ -11,6 +11,7 @@
     public $organizacaoEventos;
     public $patentes;
     public $softwares;
+    public $marcas;
     // Construtor
     public function __construct(){
       $this->titulacao = '';
@@ -22,6 +23,7 @@
       $this->organizacaoEventos = '';
       $this->patentes = '';
       $this->softwares = '';
+      $this->marcas = '';
     }
 
     // Função para instanciar e buscar todas as informações
@@ -36,6 +38,7 @@
       $curriculo->organizacaoEventos = OrganizacaoEvento::getOrganizacaoEvento($data);
       $curriculo->patentes = Patente::getPatentes($data);
       $curriculo->softwares = Software::getSoftwares($data);
+      $curriculo->marcas = Marca::getMarcas($data);
       return $curriculo;
     }
 
@@ -52,7 +55,7 @@
   require 'organizacaoEvento.php';
   require 'patente.php';
   require 'software.php';
-
+  require 'marca.php';
 
 
 
