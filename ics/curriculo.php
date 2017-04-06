@@ -10,6 +10,7 @@
     public $bancas;
     public $organizacaoEventos;
     public $patentes;
+    public $softwares;
     // Construtor
     public function __construct(){
       $this->titulacao = '';
@@ -20,6 +21,7 @@
       $this->bancas = '';
       $this->organizacaoEventos = '';
       $this->patentes = '';
+      $this->softwares = '';
     }
 
     // Função para instanciar e buscar todas as informações
@@ -33,6 +35,7 @@
       $curriculo->bancas = Banca::getBancas($data);
       $curriculo->organizacaoEventos = OrganizacaoEvento::getOrganizacaoEvento($data);
       $curriculo->patentes = Patente::getPatentes($data);
+      $curriculo->softwares = Software::getSoftwares($data);
       return $curriculo;
     }
 
@@ -48,6 +51,7 @@
   require 'banca.php';
   require 'organizacaoEvento.php';
   require 'patente.php';
+  require 'software.php';
 
 
 

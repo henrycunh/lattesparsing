@@ -39,7 +39,11 @@
         //Caso possua patentes
         if(isset($data['PRODUCAO-TECNICA']['PATENTE'])):
           $patentesRaw = $data['PRODUCAO-TECNICA']['PATENTE'];
-        if(array_keys($patentesRaw)[0] === '@attributes') $patentesRaw = array($patentesRaw);
+
+        //Caso possua apenas um registro
+        if(array_keys($patentesRaw)[0] === '@attributes')
+          $patentesRaw = array($patentesRaw);
+
         //Percorrer lista de patentes
         foreach ($patentesRaw as $patente) {
           //Classe temporária para atribuir valores
