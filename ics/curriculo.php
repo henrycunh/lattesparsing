@@ -12,6 +12,7 @@
     public $patentes;
     public $softwares;
     public $marcas;
+    public $corposEditoriais;
     // Construtor
     public function __construct(){
       $this->titulacao = '';
@@ -24,6 +25,7 @@
       $this->patentes = '';
       $this->softwares = '';
       $this->marcas = '';
+      $this->corposEditoriais = '';
     }
 
     // Função para instanciar e buscar todas as informações
@@ -39,6 +41,7 @@
       $curriculo->patentes = Patente::getPatentes($data);
       $curriculo->softwares = Software::getSoftwares($data);
       $curriculo->marcas = Marca::getMarcas($data);
+      $curriculo->corposEditoriais = CorpoEditorial::getCorposEditoriais($data);
       return $curriculo;
     }
 
@@ -56,6 +59,7 @@
   require 'patente.php';
   require 'software.php';
   require 'marca.php';
+  require 'CorpoEditorial.php';
 
 
 

@@ -13,8 +13,7 @@
     public $ambiente;
     //AUTORES
     public $autores;
-    //INFORMACOES-ADICIONAIS > @attributes > DESCRICAO-INFORMACOES-ADICIONAIS
-    public $descricao;
+
 
     //Construtor
     public function __construct(){
@@ -27,7 +26,6 @@
       $this->plataforma = '';
       $this->ambiente = '';
       $this->autores = array();
-      $this->descricao = '';
     }
 
     //Lista de registros de Software
@@ -51,7 +49,6 @@
         $dadosB = attr($software['DADOS-BASICOS-DO-SOFTWARE']);
         $details = attr($software['DETALHAMENTO-DO-SOFTWARE']);
         $autores = $software['AUTORES'];
-        $adicionais = attr($software['INFORMACOES-ADICIONAIS']);
 
         //dadosB
         $software_->natureza = $dadosB['NATUREZA'];
@@ -65,8 +62,7 @@
         $software_->ambiente = $details['AMBIENTE'];
         //autores
         $software_->autores = getAutores($autores);
-        //adicionais
-        $software_->descricao = $adicionais['DESCRICAO-INFORMACOES-ADICIONAIS'];
+    
 
         //Atribuição da classe temporária no Array
         array_push($softwares, $software_);
