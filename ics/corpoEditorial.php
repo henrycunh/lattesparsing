@@ -27,8 +27,10 @@
       if(array_keys($atuacoesProfRaw)[0] === '@attributes')
         $atuacoesProfRaw = array($atuacoesProfRaw);
 
+      //percorrer atuações
       foreach ($atuacoesProfRaw as $atuacaoProf) {
         if(isset($atuacaoProf['VINCULOS']['@attributes']['OUTRO-VINCULO-INFORMADO'])){
+          //checar se é membro
           if($atuacaoProf['VINCULOS']['@attributes']['OUTRO-VINCULO-INFORMADO'] === "Membro de corpo editorial"){
             $corpoEditorial_ = new self();
 

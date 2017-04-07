@@ -13,6 +13,7 @@
     public $softwares;
     public $marcas;
     public $corposEditoriais;
+    public $coordProjs;
     // Construtor
     public function __construct(){
       $this->titulacao = '';
@@ -26,6 +27,7 @@
       $this->softwares = '';
       $this->marcas = '';
       $this->corposEditoriais = '';
+      $this->coordProjs = '';
     }
 
     // Função para instanciar e buscar todas as informações
@@ -42,6 +44,7 @@
       $curriculo->softwares = Software::getSoftwares($data);
       $curriculo->marcas = Marca::getMarcas($data);
       $curriculo->corposEditoriais = CorpoEditorial::getCorposEditoriais($data);
+      $curriculo->coordProjs = CoordProjeto::getCoordProjs($data);
       return $curriculo;
     }
 
@@ -59,8 +62,8 @@
   require 'patente.php';
   require 'software.php';
   require 'marca.php';
-  require 'CorpoEditorial.php';
-
+  require 'corpoEditorial.php';
+  require 'coordProj.php';
 
 
 

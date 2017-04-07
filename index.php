@@ -10,10 +10,11 @@
     "jaime" => "xml/jaime.xml",
     "jose" => "xml/jose.xml",
     "ruth" => "xml/ruth.xml",
+    "leitao" => "xml/leitao.xml",
    );
 
   //Carrega o arquivo
-  $file = file_get_contents($curriculosPath['ruth']);
+  $file = file_get_contents($curriculosPath['leitao']);
   // // Substitui quebras de linha
   $file = str_replace(array("\n", "\r", "\t"), '', $file);
   // // Remove espaços múltiplos
@@ -28,8 +29,8 @@
   // Objeto Curriculo
   $curriculo = Curriculo::getCurriculo($data);
 
-  echo json_encode(Banca::getBancas($data), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-  // echo json_encode($curriculo, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-  // echo $json;
+  // echo json_encode(CoordProjeto::getCoordProjs($data), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+  echo json_encode($curriculo, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+  //  echo $json;
 
 ?>
