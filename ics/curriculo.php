@@ -64,6 +64,7 @@
   require 'marca.php';
   require 'corpoEditorial.php';
   require 'coordProj.php';
+  require 'orientacao.php';
 
 
 
