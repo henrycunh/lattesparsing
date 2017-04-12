@@ -2,13 +2,18 @@
   class TrabEvento{
     // 1 - Resumo Nacional, 2 - Resumo Internacional,
     // 3 - Completo Nacional, 4 - Completo Internacional
-    public $tipo;
+    public $tipoClass;
+    // 1 - Resumo Nacional, 2 - Resumo Internacional,
+    // 3 - Completo Nacional, 4 - Completo Internacional
+    public $tipoPais;
     public $natureza;
     public $titulo;
     public $ano;
     public $isbn;
     public $homepage;
     public $doi;
+    public $pais;
+    public $idioma;
     public $classEvento;
     public $nomeEvento;
     public $cidadeEvento;
@@ -20,7 +25,8 @@
     public $autores;
 
     public function __construct(){
-      $this->tipo = '';
+      $this->tipoClass = '';
+      $this->tipoPais = '';
       $this->natureza = '';
       $this->titulo = '';
       $this->ano = '';
@@ -33,6 +39,8 @@
       $this->anoRealizacao = '';
       $this->nomeEditora = '';
       $this->titulosAnais = '';
+      $this->pais = '';
+      $this->idioma = '';
       $this->pagInicial = '';
       $this->pagFinal = '';
       $this->autores = array();
@@ -57,6 +65,8 @@
         $trab_->ano = $dadosB['ANO-DO-TRABALHO'];
         $trab_->homepage = $dadosB['HOME-PAGE-DO-TRABALHO'];
         $trab_->doi = $dadosB['DOI'];
+        $trab_->idioma = $dadosB['IDIOMA'];
+        $trab_->pais = $dadosB['PAIS-DO-EVENTO'];
 
         // Detalhes do Trabalho
         $trab_->classEvento = $details['CLASSIFICACAO-DO-EVENTO'];
@@ -68,17 +78,29 @@
         $trab_->pagFinal = $details['PAGINA-FINAL'];
         $trab_->isbn = $details['ISBN'];
 
-        // Definindo tipo
-        if($trab_->natureza == 'COMPLETO') $trab_->tipo = 2;
-        else $trab_->tipo = 1;
-        if($trab_->classEvento == 'INTERNACIONAL' && $trab_->tipo == 2) $trab_->tipo = 4;
-        else if($trab_->classEvento != 'INTERNACIONAL' && $trab_->tipo == 2) $trab_->tipo = 3;
-        else if($trab_->classEvento == 'INTERNACIONAL' && $trab_->tipo == 1) $trab_->tipo = 2;
-        else if($trab_->classEvento != 'INTERNACIONAL' && $trab_->tipo == 1) $trab_->tipo = 1;
-        // resumo nacional = 1
-        // resumo internacional = 2
-        // completo nacional = 3
-        // completo internacional = 4
+        // Definindo tipoClass
+        if($trab_->natureza == 'COMPLETO')
+          $trab_->tipoClass = 2;
+        else
+          $trab_->tipoClass = 1;
+
+        if($trab_->classEvento == 'INTERNACIONAL' && $trab_->tipoClass == 2) $trab_->tipoClass = 4;
+        else if($trab_->classEvento != 'INTERNACIONAL' && $trab_->tipoClass == 2) $trab_->tipoClass = 3;
+        else if($trab_->classEvento == 'INTERNACIONAL' && $trab_->tipoClass == 1) $trab_->tipoClass = 2;
+        else if($trab_->classEvento != 'INTERNACIONAL' && $trab_->tipoClass == 1) $trab_->tipoClass = 1;
+        // resumo nacional = 1, resumo internacional = 2, completo nacional = 3, completo internacional = 4
+
+        // Definindo tipoPais
+        if($trab_->natureza == 'COMPLETO')
+          $trab_->tipoPais = 2;
+        else
+          $trab_->tipoPais = 1;
+
+        if($trab_->pais != 'Brasil' && $trab_->tipoPais == 2) $trab_->tipoPais = 4;
+        else if($trab_->pais == 'Brasil' && $trab_->tipoPais == 2) $trab_->tipoPais = 3;
+        else if($trab_->pais != 'Brasil' && $trab_->tipoPais == 1) $trab_->tipoPais = 2;
+        else if($trab_->pais == 'Brasil' && $trab_->tipoPais == 1) $trab_->tipoPais = 1;
+        // resumo nacional = 1, resumo no exterior = 2, completo nacional = 3, completo no exterior = 4
 
         $trab_->autores = getAutores($autores);
         array_push($trabEventos, $trab_);

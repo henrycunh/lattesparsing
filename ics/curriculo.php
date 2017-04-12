@@ -10,6 +10,10 @@
     public $bancas;
     public $organizacaoEventos;
     public $patentes;
+    public $softwares;
+    public $marcas;
+    public $corposEditoriais;
+    public $coordProjs;
     // Construtor
     public function __construct(){
       $this->titulacao = '';
@@ -20,6 +24,10 @@
       $this->bancas = '';
       $this->organizacaoEventos = '';
       $this->patentes = '';
+      $this->softwares = '';
+      $this->marcas = '';
+      $this->corposEditoriais = '';
+      $this->coordProjs = '';
     }
 
     // Função para instanciar e buscar todas as informações
@@ -33,6 +41,10 @@
       $curriculo->bancas = Banca::getBancas($data);
       $curriculo->organizacaoEventos = OrganizacaoEvento::getOrganizacaoEvento($data);
       $curriculo->patentes = Patente::getPatentes($data);
+      $curriculo->softwares = Software::getSoftwares($data);
+      $curriculo->marcas = Marca::getMarcas($data);
+      $curriculo->corposEditoriais = CorpoEditorial::getCorposEditoriais($data);
+      $curriculo->coordProjs = CoordProjeto::getCoordProjs($data);
       return $curriculo;
     }
 
@@ -48,8 +60,11 @@
   require 'banca.php';
   require 'organizacaoEvento.php';
   require 'patente.php';
-
-
+  require 'software.php';
+  require 'marca.php';
+  require 'corpoEditorial.php';
+  require 'coordProj.php';
+  require 'orientacao.php';
 
 
 

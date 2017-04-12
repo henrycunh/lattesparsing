@@ -6,6 +6,8 @@
     public $natureza;
     public $titulo;
     public $ano;
+    public $idioma;
+    public $pais;
     public $homepage;
     public $doi;
     //DETALHAMENTO-DA-ORGANIZACAO-DE-EVENTO -> @attributes
@@ -22,6 +24,8 @@
       $this->ano = '';
       $this->homepage = '';
       $this->doi = '';
+      $this->idioma = '';
+      $this->pais = '';
       $this->instituicaoPromotora = '';
       $this->cidade = '';
       $this->autores = array();
@@ -52,6 +56,8 @@
         $organizacaoEvento_->ano = $dadosB['ANO'];
         $organizacaoEvento_->homepage = $dadosB['HOME-PAGE-DO-TRABALHO'];
         $organizacaoEvento_->doi = $dadosB['DOI'];
+        $organizacaoEvento_->idioma = $dadosB['IDIOMA'];
+        $organizacaoEvento_->pais = $dadosB['PAIS'];
         //Detalhamento
         $organizacaoEvento_->instituicaoPromotora = $details['INSTITUICAO-PROMOTORA'];
         $organizacaoEvento_->cidade = $details['CIDADE'];

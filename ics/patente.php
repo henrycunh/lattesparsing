@@ -14,6 +14,7 @@
       public $tituloPatente;
       public $instituicaoDeposito;
       public $nomeTitular;
+      public $dataConcessao;
     //AUTORES
     public $autores;
 
@@ -28,6 +29,7 @@
         $this->tituloPatente = '';
         $this->instituicaoDeposito = '';
         $this->nomeTitular = '';
+        $this->dataConcessao = '';
         $this->autores = array();
       }
 
@@ -40,7 +42,10 @@
         if(isset($data['PRODUCAO-TECNICA']['PATENTE'])):
           $patentesRaw = $data['PRODUCAO-TECNICA']['PATENTE'];
 
-        if(array_keys($patentesRaw)[0] === '@attributes') $patentesRaw = array($patentesRaw);
+        //Caso possua apenas um registro
+        if(array_keys($patentesRaw)[0] === '@attributes')
+          $patentesRaw = array($patentesRaw);
+
         //Percorrer lista de patentes
         foreach ($patentesRaw as $patente) {
           //Classe temporária para atribuir valores
@@ -65,6 +70,7 @@
             $patente_->tituloPatente = $registro['TITULO-PATENTE'];
             $patente_->instituicaoDeposito = $registro['INSTITUICAO-DEPOSITO-REGISTRO'];
             $patente_->nomeTitular = $registro['NOME-DO-TITULAR'];
+            $patente_->dataConcessao = $registro['DATA-DE-CONCESSAO'];
           //AUTORES
           $patente_->autores = getAutores($autores);
 

@@ -7,6 +7,9 @@
     public $ano;
     public $homepage;
     public $doi;
+    public $idioma;
+    public $pais;
+    public $meio;
     //DETALHAMENTO-DO-LIVRO
     public $isbn;
     public $numPags;
@@ -22,6 +25,9 @@
       $this->doi = '';
       $this->isbn = '';
       $this->numPags = '';
+      $this->idioma = '';
+      $this->pais = '';
+      $this->meio = '';
       $this->autores = array();
     }
 
@@ -49,6 +55,10 @@
           $livro_->ano = $dadosB['ANO'];
           $livro_->homepage = $dadosB['HOME-PAGE-DO-TRABALHO'];
           $livro_->doi = $dadosB['DOI'];
+          $livro_->pais = $dadosB['PAIS-DE-PUBLICACAO'];
+          $livro_->idioma = $dadosB['IDIOMA'];
+          $livro_->meio = $dadosB['MEIO-DE-DIVULGACAO'];
+
           $livro_->isbn = $details['ISBN'];
           $livro_->numPags = $details['NUMERO-DE-PAGINAS'];
           $livro_->autores = getAutores($autores);
